@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
-from pyrogram.enums import ChatType
+from pyrogram.enums import ChatType, ParseMode
 from pyrogram.errors import (
     ChatSendPlainForbidden,
     ChatWriteForbidden,
@@ -20,7 +20,7 @@ async def _safe_reply_text(message: Message, text: str):
     try:
         await message.reply_text(
             text,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             disable_web_page_preview=True,
         )
     except (ChatSendPlainForbidden, ChatWriteForbidden, Forbidden, ChannelPrivate):
@@ -31,7 +31,7 @@ async def _safe_reply_text(message: Message, text: str):
 @app.on_message(filters.video_chat_started & filters.group)
 async def on_voice_chat_started(_, message: Message):
     text = (
-        "🎙 <b>𝖵𝗈𝗂𝗖𝖾 𝖢𝗁𝖺𝗍 𝖲𝗍𝖺𝗋𝗍𝖾𝖽</b>\n"
+        "🎙 <b>𝖵𝗈𝗂𝖼𝖾 𝖢𝗁𝖺𝗍 𝖲𝗍𝖺𝗋𝗍𝖾𝖽</b>\n"
         "<i>𝖩𝗈𝗂𝗇 𝖺𝗇𝖽 𝖾𝗇𝗃𝗈𝗒 𝗍𝗁𝖾 𝖼𝗈𝗇𝗏𝖾𝗋𝗌𝖺𝗍𝗂𝗈𝗇 ✨</i>"
     )
     await _safe_reply_text(message, text)
@@ -41,16 +41,15 @@ async def on_voice_chat_started(_, message: Message):
 @app.on_message(filters.video_chat_ended & filters.group)
 async def on_voice_chat_ended(_, message: Message):
     text = (
-        "🔕 <b>𝖵𝗈𝗂𝗖𝖾 𝖢𝗁𝖺𝗍 𝖤𝗇𝖽𝖾𝖽</b>\n"
+        "🔕 <b>𝖵𝗈𝗂𝖼𝖾 𝖢𝗁𝖺𝗍 𝖤𝗇𝖽𝖾𝖽</b>\n"
         "<i>𝖳𝗁𝖺𝗇𝗄𝗌 𝖿𝗈𝗋 𝗃𝗈𝗂𝗇𝗂𝗇𝗀 💙</i>"
     )
     await _safe_reply_text(message, text)
 
 
-# 👥 Voice Chat Invite (FIXED)
+# 👥 Voice Chat Invite
 @app.on_message(filters.video_chat_members_invited & filters.group)
 async def on_voice_chat_members_invited(_, message: Message):
-    # Inviter
     if message.from_user:
         inviter_name = message.from_user.first_name or "User"
         inviter = f"<a href='tg://user?id={message.from_user.id}'>{inviter_name}</a>"
@@ -69,7 +68,7 @@ async def on_voice_chat_members_invited(_, message: Message):
 
     if invited_users:
         text = (
-            "👥 <b>𝖵𝗈𝗂𝗖𝖾 𝖢𝗁𝖺𝗍 𝖨𝗇𝗏𝗂𝗍𝖾</b>\n\n"
+            "👥 <b>𝖵𝗈𝗂𝖼𝖾 𝖢𝗁𝖺𝗍 𝖨𝗇𝗏𝗂𝗍𝖾</b>\n\n"
             f"• {inviter}\n"
             f"• <b>𝖨𝗇𝗏𝗂𝗍𝖾𝖽:</b> {', '.join(invited_users)}\n\n"
             "<i>𝖳𝖺𝗉 𝗍𝗈 𝗃𝗈𝗂𝗇 𝗍𝗁𝖾 𝗏𝗈𝗂𝖼𝖾 𝖼𝗁𝖺𝗍 🎧</i>"
