@@ -1,6 +1,7 @@
 import random
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.enums import ParseMode
 
 from AviaxMusic import app
 from config import SUPPORT_GROUP
@@ -49,7 +50,7 @@ async def rate_user(_, message: Message):
     if not message.reply_to_message or not message.reply_to_message.from_user:
         return await message.reply_text(
             "❌ <b>𝖪𝗂𝗌𝗂 𝗎𝗌𝖾𝗋 𝗄𝗈 𝗋𝖾𝗉𝗅𝗒 𝗄𝖺𝗋𝗄𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽 𝗎𝗌𝖾 𝗄𝖺𝗋𝗈!</b>",
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             quote=True,
         )
 
@@ -73,14 +74,14 @@ async def rate_user(_, message: Message):
             animation=media,
             caption=caption,
             reply_markup=BUTTON,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
         )
     else:
         await message.reply_video(
             video=media,
             caption=caption,
             reply_markup=BUTTON,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
         )
 
 
