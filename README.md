@@ -64,7 +64,7 @@ Simple setup, clean UI, and stable performance on **Heroku**.
 ## 🚀 Deploy on Heroku
 
 <p align="center">
-  <a href="https://dashboard.heroku.com/new?template=https://github.com/GhostDraco/AviaxMusic">
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/lazinessruler/Soundfreq">
     <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy on Heroku">
   </a>
 </p>
