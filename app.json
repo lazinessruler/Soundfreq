@@ -64,7 +64,7 @@
     },
     "UPSTREAM_REPO": {
       "description": "GitHub repository URL for updates",
-      "value": "https://github.com/GhostDraco/AviaxMusic",
+      "value": "https://github.com/lazinessruler/Soundfreq",
       "required": false
     },
     "SUPPORT_CHANNEL": {
